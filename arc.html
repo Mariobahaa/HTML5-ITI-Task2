@@ -1,0 +1,31 @@
+<! DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        <canvas width="300px" height="300px" id="c"></canvas>
+    
+    <script>
+        var c = document.getElementById("c");
+        var cnv = c.getContext("2d");
+        var dir = false;
+        var cnt = 0;
+        setInterval(function(){
+            cnv.beginPath();
+            cnv.clearRect(0,0,300,300);
+            cnv.arc(150,150,100,0,cnt==10?2*Math.PI:Math.PI,dir);
+            cnv.fillStyle = "yellow";
+            cnv.fill();
+            cnv.strokeStyle = "green";
+            cnv.stroke();
+            /*setTimeout(function(){
+                cnv.clearRect(0,0,300,300);
+            })*/
+            dir=!dir;
+          
+            if(cnt>=10) cnt=0;
+            else cnt++;
+        },400);
+    </script>
+    </body>
+</html>
