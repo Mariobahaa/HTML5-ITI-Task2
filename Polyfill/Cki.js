@@ -3,7 +3,23 @@ if(typeof window.localStorage == "undefined" && typeof window.sessionStorage==un
 (function () {
    
      var localStorage = function () {
-        ;
+          Object.defineProperty(this, 'length', {
+            value: (function () {
+                var cookieList = [];
+                var splt = decodeURI(document.cookie);
+                splt = splt.split(";");
+
+                for (var i = 0; i < splt.length; i++) {
+                    //if(splt[i].includes("expires"))
+                    cookieList[splt[i].split("=")[0].trim()] = splt[i].split("=")[1].trim();
+                }
+                
+                return cookieList;
+            })().length;
+            writable: false,
+            enumerable: false,
+            configurable: false,
+        });
      };
 
 
@@ -13,6 +29,7 @@ if(typeof window.localStorage == "undefined" && typeof window.sessionStorage==un
         expDate.setMonth(expDate.getMonth()+3);
         document.cookie = cookieName + "=" + cookieVal + ";" + "expires=" + expDate.toUTCString();
         localStorage[cookieName] = cookieVal;
+        this.length++;
     };
     
     
@@ -77,7 +94,23 @@ if(typeof window.localStorage == "undefined" && typeof window.sessionStorage==un
     
     
     var sessionStorage = function () {
-        ;
+         Object.defineProperty(this, 'length', {
+            value: (function () {
+                var cookieList = [];
+                var splt = decodeURI(document.cookie);
+                splt = splt.split(";");
+
+                for (var i = 0; i < splt.length; i++) {
+                    //if(splt[i].includes("expires"))
+                    cookieList[splt[i].split("=")[0].trim()] = splt[i].split("=")[1].trim();
+                }
+                
+                return cookieList;
+            })().length;
+            writable: false,
+            enumerable: false,
+            configurable: false,
+        });
      };
 
 
@@ -87,6 +120,7 @@ if(typeof window.localStorage == "undefined" && typeof window.sessionStorage==un
         //expDate.setMonth(expDate.getMonth()+3);
         document.cookie = cookieName + "=" + cookieVal + ";" ;//+ "expires=" + expDate.toUTCString();
         localStorage[cookieName] = cookieVal;
+        this.length++;
     };
     
     
