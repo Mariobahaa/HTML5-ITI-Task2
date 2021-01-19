@@ -1,4 +1,4 @@
-if(typeof window.localStorage == "undefined" && typeof window.sessionStorage==undefined) 
+if(typeof window.localStorage == "undefined" && typeof window.sessionStorage=="undefined") 
 
 (function () {
    

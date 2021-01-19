@@ -10,7 +10,7 @@
         var cnv = c.getContext("2d");
         var dir = false;
         var cnt = 0;
-        setInterval(function(){
+        var invr = setInterval(function(){
             cnv.beginPath();
             cnv.clearRect(0,0,300,300);
             cnv.arc(150,150,100,0,cnt==10?2*Math.PI:Math.PI,dir);
@@ -23,7 +23,7 @@
             })*/
             dir=!dir;
           
-            if(cnt>=10) cnt=0;
+            if(cnt>=10) {cnt=0; clearInterval(invr);}
             else cnt++;
         },400);
     </script>
